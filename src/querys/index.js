@@ -13,20 +13,28 @@ const GET_USERS = gql`
 `;
 
 const CREATE_USERS = gql`
-  mutation (
-    $firstName: String
-    $lastName: String
-    $email: String
-    $password: String
-    $role: String
+  mutation createUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+    $role: String!
   ) {
     createUser(
-      firstName: $firstName
-      lastName: $lastName
-      email: $email
-      password: $password
-      role: $role
-    )
+      input: {
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
+        password: $password
+        role: $role
+      }
+    ) {
+      userId
+      firstName
+      lastName
+      email
+      role
+    }
   }
 `;
 export { GET_USERS, CREATE_USERS };
